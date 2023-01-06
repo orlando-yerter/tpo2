@@ -1,0 +1,27 @@
+{% extends 'home/base.html' %}
+{% block title %} TPO Codo a Codo - Grupo 11 | App Remove {% endblock title %}
+
+{% block content %}
+<div class="row my-2 text-center">
+    {% for lista in list_remove %}
+
+    <div class="col-sm-12 col-md-6 col-lg-3 mb-2">
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title text-center">{{ lista.title }}</h5>
+                <hr class="mb-3">
+                <p class="card-text"> <img class="img-fluid" src="{{ lista.image.url }}" width="300px" alt="Imagen del producto"></p>
+                <p class="card-text">{{ lista.description }}</p>
+                <p class="card-text">$ {{ lista.price }}</p>
+                <p class="card-text">{{ lista.publicationsDate }}</p>
+            </div>
+            <form class="form-control" class="content-fluid" action='/remove_item/{{ lista.id }}' method=POST> 
+                {% csrf_token %}
+                <button value="eliminar" type="submit" class="btn btn-block btn-danger" id="{{ lista.id }}">Eliminar</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+  {% endblock content %}

@@ -1,0 +1,42 @@
+
+{% extends 'home/base.html' %}
+{% block title %} TPO Codo a Codo - Grupo 11 | App Edit {% endblock title %}
+
+{% block content %}
+<div class="row my-2 text-center">
+    {% for lista in list_edit %}
+    <div class="col-sm-12 col-md-6 col-lg-3 mb-2">
+        <form class="form-control" class="content-fluid" action='/edit_item/{{ lista.id }}' enctype="multipart/form-data" method=POST>
+            {% csrf_token %}
+        <div class="card">
+            <div class="card-body">
+                <img class="img-fluid" src="{{ lista.image.url }}" width="300px" alt="Imagen del producto"></p>
+                <div class="form-group">
+                    <label class="{{lista.title}}" for="{{lista.title}}">Titulo</label>
+                    <input type="text" name="title" class="form-control" id="{{lista.title}}"  value="{{lista.title}}">
+                </div>
+                <div class="form-group">
+                    <label for="{{lista.description}}">Descripcion</label>
+                    <input type="text" name="description" class="form-control" id="{{lista.description}}" value="{{lista.description}}">
+                </div>
+                <div class="form-group">
+                    <label for="{{lista.price}}">Precio</label>
+                    <input type="number" name="price" class="form-control" id="{{lista.price}}" value="{{lista.price}}">
+                </div>
+               <!-- <div class="form-group">
+                    <label for="{{lista.publicationsDate}}">Fecha de publicacion</label>
+                    <input type="date" class="form-control" id="{{lista.publicationsDate}}" value="{{lista.publicationsDate}}" hidden="true">
+                </div> -->
+                <div class="form-group">
+                    <label for="{{lista.image}}">Imagen</label>
+                    <input type="file" name="image" class="form-control-file" id="{{ lista.image }}" value="{{lista.image}}" accept="image/*">
+                </div> 
+            </div> 
+
+                <button value="editar" type="submit" class="btn btn-block btn-info" id="{{ lista.id }}">Editar</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+  {% endblock content %}

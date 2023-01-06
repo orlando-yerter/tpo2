@@ -1,0 +1,27 @@
+{% extends 'home/base.html' %}
+{% block title %} TPO Codo a Codo - Grupo 11 | APP DE PUBLICACION {% endblock title %}
+
+<div class="container">
+  {% block content %}  
+  <div class="row justify-content-center my-2">
+    <div class="col col-sm-12 col-md-10 col-lg-8 col-xl-6">
+      <div class="form-group">
+        <form class="form-control" action='{{post}}' method=POST enctype='multipart/form-data'>
+            {% csrf_token %}
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title text-center">Publicar producto</h5>
+                  <hr class="mb-5">
+                  <p class="card-text">{{ form.title }}</p>
+                  <p class="card-text">{{ form.description }}</p>
+                  <p class="card-text">{{ form.price }}</p>
+                  <p class="card-text">{{ form.image }}</p>
+                  <p class="card-text">{{ form.publicationsDate }}</p>
+                </div>
+                <button value="subir" type="submit" class="btn btn-success py-6">Publicar</button>
+              </div>
+        </form>
+      </div>
+  </div>
+</div>
+{% endblock content %}
